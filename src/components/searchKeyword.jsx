@@ -2,25 +2,31 @@ import React, { useState } from "react";
 import ListOfGifs from "./listOfGifs";
 import './search.css'
 
-
+let searchValue = document.getElementById('searchValue');
+const clearInput = () => {
+    if(searchValue.value != '') {
+        searchValue.value = '';
+    }
+}
 
 export function Search() {
     const [search, setSearch] = useState('Panda');
     const [newKeyword, setKeyword] = useState('panda');
 
     const getSearchValue = event => {
-        let searchValue = document.getElementById('searchValue');
         searchValue = event.target.value;
         setSearch(searchValue)
     }
     const changeKeyword = () => {
-        let keyword = search
-        setKeyword(keyword)
+        let keyword = search;
+        setKeyword(keyword);
+        clearInput();
     }
     const handleKeyDown = event => {
         if(event.key === 'Enter') {
             changeKeyword();
         }
+        clearInput();
     }
 
     return (
